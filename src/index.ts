@@ -3,7 +3,8 @@ import * as fs from 'fs';
 import store from './store';
 import practice from './practice';
 
-export const PWS_FILE = "data/pws.txt"
+const DATA_DIR = "data"
+export const PWS_FILE = DATA_DIR + "/pws.txt"
 
 export function readPws() {
 	return fs.readFileSync(PWS_FILE, 'utf-8')
@@ -17,6 +18,7 @@ export function readPws() {
 }
 
 async function main() {
+	if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR);
 	if (!fs.existsSync(PWS_FILE)) fs.writeFileSync(PWS_FILE, "");
 	
 	while (true) {
